@@ -24,11 +24,7 @@ def check_and_comment(youtube, channel_id):
     
     if response['items']:
         latest_video_id = response['items'][0]['id']['videoId']
-        
-        # (In reality, you'd compare this ID against a database of 'already commented' videos)
         print(f"New video found: {latest_video_id}. Attempting to comment...")
-        
-        # 3. Post the "First!" comment
         youtube.commentThreads().insert(
             part="snippet",
             body={
@@ -36,7 +32,7 @@ def check_and_comment(youtube, channel_id):
                     "videoId": latest_video_id,
                     "topLevelComment": {
                         "snippet": {
-                            "textOriginal": "First!"
+                            "textOriginal": "first"
                         }
                     }
                 }
